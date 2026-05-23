@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陳耀基 CHAN IO KEI | 個人主頁</title>
+    <style>
+        /* 全局樣式 */
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #319795;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --bg-light: #f7fafc;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 導覽列 */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero 區塊 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* 主要內容排版 */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* 履歷總結 */
+        .summary-box {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--accent-color);
+        }
+
+        .summary-box p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            text-align: justify;
+        }
+
+        /* 工作經驗時間軸 */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 30px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border: 3px solid var(--white);
+            border-radius: 50%;
+            left: -39px;
+            top: 6px;
+            box-shadow: 0 0 0 3px rgba(49, 151, 149, 0.2);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .company-name {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .job-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .job-details {
+            list-style-type: none;
+        }
+
+        .job-details li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .job-details li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 學歷與獲獎項目網格 */
+        .grid-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .card-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .card-subtitle {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        /* 頁尾 */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .grid-two-col {
+                grid-template-columns: 1fr;
+            }
+            .timeline-header {
+                flex-direction: column;
+            }
+            .job-date {
+                margin-top: 5px;
+            }
+            .nav-links {
+                display: none; /* 簡化行動端導覽 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav">
+            <div class="logo">CHAN IO KEI</div>
+            <ul class="nav-links">
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#experience">工作經驗</a></li>
+                <li><a href="#education-awards">學歷與榮譽</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>陳耀基 (CHAN IO KEI)</h1>
+            <p>資訊科技教育 | 網路安全風險評估 | 系統運維專家</p>
+            <div class="contact-info">
+                <div class="contact-item">📞 (853) 63253153</div>
+                <div class="contact-item">📧 Chanroy111@gmail.com</div>
+                <div class="contact-item">📍 澳門提督馬路129A鴻運閣16樓C</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">關於我</h2>
+        <div class="summary-box">
+            <p>本人具備資訊科技教育、網路安全風險評估、企業級系統監控、伺服器及網路基礎設施維護、技術支援與跨部門協調經驗。曾任職於學校、國際會計師樓及大型綜合度假企業，熟悉資訊系統日常維護、生產環境監控、系統備份、效能分析、安全日誌檢視、事故應急處理及問題跟進流程，能配合機構需要提供穩定、系統化及具風險意識的資訊技術支援。</p>
+            <p>現職教師期間，除負責資訊科技相關教學工作外，亦參與學校網路服務基礎設施維護（涵蓋伺服器、防火牆及 WLAN 設備等），兼具教學溝通能力與實務技術支援能力。過往於 PwC 參與資訊系統風險評估、網路安全威脅及漏洞識別；於金沙中國指揮中心負責生產環境伺服器監控與日常維護，熟悉大型機構資訊系統穩定運作之要求。</p>
+            <p>具備良好的分析能力、報告撰寫能力、溝通協調能力及持續學習能力，能獨立處理資訊技術支援、系統維護、問題分析與技術研究工作。期盼將教育、網路安全及企業資訊系統運維經驗，應用於長遠資訊科技發展建設工作中。</p>
+        </div>
+    </section>
+
+    <section id="experience" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">工作經驗</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="job-title">教師 (全職)</span>
+                            <span class="company-name">勞校中學</span>
+                        </div>
+                        <span class="job-date">2023/09 – 現在</span>
+                    </div>
+                    <ul class="job-details">
+                        <li>教授常規資訊科技素養內容（編程、辦公軟體、圖片編輯等）並準備相關教案、授課、批改作業和考試。</li>
+                        <li>維護學校的網路服務基礎設施（伺服器、防火牆、WLAN 設備等）。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="job-title">Associate (Cyber Security) (全職)</span>
+                            <span class="company-name">PwC 會計師樓</span>
+                        </div>
+                        <span class="job-date">2022/04 – 2023/08</span>
+                    </div>
+                    <ul class="job-details">
+                        <li>對審計對象組織的信息系統進行風險評估，識別潛在的網路安全威脅和漏洞。</li>
+                        <li>參與制定和執行組織的網路安全策略和流程，以保護組織的數據和信息資產。</li>
+                        <li>協助安全事故應急響應團隊進行事件的處理及後續的調查分析（幫助遏制網路攻擊的蔓延，收集相關的日誌和證據，分析攻擊的手段和路徑）。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="job-title">指揮中心技術員 (全職)</span>
+                            <span class="company-name">金沙中國</span>
+                        </div>
+                        <span class="job-date">2019/05 – 2022/03</span>
+                    </div>
+                    <ul class="job-details">
+                        <li>定時為生產環境中各伺服器和伺服器維護團隊提供服務監控，系統備份，效能分析和安全日誌紀錄報告。</li>
+                        <li>發現伺服器服務異常時主動組織相關的部門處理並提供相關監控報告作問題原因分析。</li>
+                        <li>事後整合事故流程並匯報，持續參與跟進應用的修復進程並更新監控程序。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="job-title">軟件應用開發員 (留學兼職)</span>
+                            <span class="company-name">Makolab S.A (Poland)</span>
+                        </div>
+                        <span class="job-date">2018/07 – 2018/09</span>
+                    </div>
+                    <ul class="job-details">
+                        <li>參與開發商業推廣應用的網頁版和 Android 版前端 UI 和功能模塊設計。</li>
+                        <li>協助後端進行 API 接口封裝測試。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="job-title">支援技術員 Help Desk (兼職)</span>
+                            <span class="company-name">旅遊學院 (氹仔)</span>
+                        </div>
+                        <span class="job-date">2017/01 – 2018/01</span>
+                    </div>
+                    <ul class="job-details">
+                        <li>為講師學生提供教學或活動現場的電子設備支援以及夜間教室電子設備設定維護。</li>
+                        <li>根據講師學生的需求或所發現的設備問題撰寫報告給予相關同事協助跟進。</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <span class="job-title">支援技術員 Desk Side Service (兼職)</span>
+                            <span class="company-name">MGM Macau</span>
+                        </div>
+                        <span class="job-date">2014/05 – 2014/08</span>
+                    </div>
+                    <ul class="job-details">
+                        <li>接聽其他部門用戶的 IT 支援服務請求電話並上報相關支援團隊。</li>
+                        <li>提供到現場的辦公環境 IT 設備維修和更換。</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="education-awards" class="container">
+        <div class="grid-two-col">
+            
+            <div class="card">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid #edf2f7; padding-bottom: 10px;">🎓 教育背景</h3>
+                <div class="card-item">
+                    <div class="card-title">電腦科學學士</div>
+                    <div class="card-subtitle">澳門大學 | 2014 – 2018</div>
+                </div>
+                <div class="card-item">
+                    <div class="card-title">高中畢業（理科）</div>
+                    <div class="card-subtitle">勞校中學 | 2008 – 2014</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="color: var(--primary-color); margin-bottom: 20px; border-bottom: 2px solid #edf2f7; padding-bottom: 10px;">🏆 獲獎項目</h3>
+                <div class="card-item">
+                    <div class="card-title">第 18 屆亞太資訊及通訊科技大獎賽</div>
+                    <div class="card-subtitle">澳門區代表（優異獎） | 2018</div>
+                </div>
+                <div class="card-item">
+                    <div class="card-title">澳門資訊科技創意大賽 2018</div>
+                    <div class="card-subtitle">大專組大獎及最佳創意獎 | 2018</div>
+                </div>
+                <div class="card-item">
+                    <div class="card-title">Dean’s Final Year Project List</div>
+                    <div class="card-subtitle">Best of Department of Computer Science | 2017 / 2018</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 CHAN IO KEI. All Rights Reserved. Designed for Professional Portfolio.</p>
+    </footer>
+
+</body>
+</html>
